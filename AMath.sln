@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Calculus", "Calculus", "{6E6C1E4A-3E41-4516-8A3A-1391E5618AE8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithm", "Algorithm", "{49F1D656-2732-4C01-9AE6-6BC7A62A9D4F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMath.Algorithms", "Algorithm.PathFinding\AMath.Algorithms.csproj", "{44581D0D-572A-4E5B-A97F-6D6196A3AB53}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistics", "Statistics", "{91F6A46F-3A73-4DB2-9D8A-1528C02D3262}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMath.Statistics", "Statistics.Descriptive\AMath.Statistics.csproj", "{A0628376-2F02-426B-847F-905AE6D17B13}"
 EndProject
@@ -36,11 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{44581D0D-572A-4E5B-A97F-6D6196A3AB53} = {49F1D656-2732-4C01-9AE6-6BC7A62A9D4F}
-		{A0628376-2F02-426B-847F-905AE6D17B13} = {91F6A46F-3A73-4DB2-9D8A-1528C02D3262}
-		{8B070539-08B7-4220-B44D-54CEB0EFF221} = {6E6C1E4A-3E41-4516-8A3A-1391E5618AE8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {541AE30C-309C-4033-80AC-1865C0A5D36D}
