@@ -37,7 +37,7 @@ namespace Calculust.Matrix
                 throw new ArgumentException();
             }
 
-            return 
+            return null;
         }
 
         #region operators

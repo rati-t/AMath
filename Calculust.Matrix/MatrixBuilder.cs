@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace Calculust.Matrix
 {
     public static class MatrixBuilder<T>
+        where T : struct, IEquatable<T>
     {
-        public Matrix<T> Like(int rows, int columns)
+        public static Matrix<T> Like(int rows, int columns)
         {
-
+            return null;
         }
     }
 }

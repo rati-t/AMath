@@ -23,5 +23,15 @@ namespace Calculust.Matrix
 
             // TODO: Check if dimension match, if not so throw exception
         }
+
+        public override T Get(int row, int column)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Set(int row, int column, T value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
