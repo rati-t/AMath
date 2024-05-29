@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -30,5 +31,7 @@ namespace AMath.Calculus.common.Points
         {
             throw new NotImplementedException();
         }
+
+        public abstract Point<T> operator +(Point<T> first, Point<T> second);
     }
 }

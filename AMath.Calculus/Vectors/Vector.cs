@@ -1,25 +1,27 @@
 ﻿using AMath.Calculus.common.Points;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AMath.Calculus.Vectors
 {
-    public class Vector<T> where T : struct, IEquatable<T>
+    public class Vector : BaseVector<float>
     {
-        internal Point<T> StartPoint { get; set; }
-        internal Point<T> EndPoint { get; set; }
+        internal Point<float> StartPoint { get; set; }
+        internal Point<float> EndPoint { get; set; }
         
-        public Vector(T startX, T startY, T endX, T endY) 
+        public Vector(float startX, float startY, float endX, float endY) 
         {  
-            StartPoint = new TwoDimensionalPoint<T>(startX, startY); 
-            EndPoint = new TwoDimensionalPoint<T>(endX, endY); 
+            StartPoint = new TwoDimensionalPoint<float>(startX, startY); 
+            EndPoint = new TwoDimensionalPoint<float>(endX, endY); 
         }
 
-        public static Vector<T> operator + (Vector<T> first, Vector<T> second)
+        internal Vector(Point<float> startPoint, Point<float> endPoint)
+        {
+            StartPoint = startPoint;
+            EndPoint = endPoint;
+        }
+
+        public static Vector operator + (Vector first, Vector second)
         {
             return null;
         }
