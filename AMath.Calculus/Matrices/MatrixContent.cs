@@ -53,6 +53,7 @@ namespace AMath.Calculus.Matrices
         }
 
         public int GetIndex(int row, int column) => column * RowCount + row;
+        public (int, int) GetCoordinates(int index) => (index % RowCount, index / RowCount);
 
         #region Validation
         public bool IsInRange(int row, int column)

@@ -56,9 +56,9 @@ namespace AMath.Calculus.Tests
 
             for (var i = 0; i < matrixAugend.RowCount; i++) 
             {
-                for (int i = 0; i < matrixAugend.ColumnCount; i++)
+                for (int j = 0; j < matrixAugend.ColumnCount; j++)
                 {
-                    Assert.That(sums[i] == matrixAugend.Get(matrixAugend.);
+                    Assert.That(sums[matrixAugend.GetIndex(i,j)] == matrixAugend.Get(i, j));
                 }
             }
         }

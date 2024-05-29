@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.Matrices
 {
-    public abstract class IMatrix<T>
+    public abstract class BaseMatrix<T>
         where T : struct, IEquatable<T>
     {
-        internal IMatrixBuilder<T> _builder;
+        internal BaseMatrixBuilder<T> _builder;
         internal MatrixContent<T> Content { get; set; }
-        public IMatrix(MatrixContent<T> content)
+        public BaseMatrix(MatrixContent<T> content)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
@@ -26,7 +26,7 @@ namespace AMath.Calculus.Matrices
             Content = content;
         }
 
-        protected IMatrix(int rows, int columns) : this(new MatrixContent<T>(rows, columns))
+        protected BaseMatrix(int rows, int columns) : this(new MatrixContent<T>(rows, columns))
         {
 
         }
@@ -34,7 +34,11 @@ namespace AMath.Calculus.Matrices
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
 
-        public void Add(IMatrix<T> addend)
+        public int GetIndex(int row, int column) => Content.GetIndex(row, column);
+        public (int, int) GetCoordinates(int index) => Content.GetCoordinates(index);
+
+
+        public void Add(BaseMatrix<T> addend)
         {
             if (IsValidForAddition(addend))
                 throw new MatricesIsNotCompatibleForAddition();
@@ -42,28 +46,29 @@ namespace AMath.Calculus.Matrices
             Add(this, addend);
         }
 
-        internal abstract void Add(IMatrix<T> augend, IMatrix<T> addend);
-        internal abstract void Add(IMatrix<T> augend, T addend);
-        internal abstract void Subtruct(IMatrix<T> minued, IMatrix<T> subtrahend);
-        internal abstract void Subtruct(IMatrix<T> minued, T subtrahend);
-        internal abstract void Multiply(IMatrix<T> multiplicand, IMatrix<T> multiplier);
-        internal abstract void Multiply(IMatrix<T> multiplicand, T multiplier);
-        internal abstract void Divide(IMatrix<T> quotiend, IMatrix<T> dividend);
-        internal abstract void Divide(IMatrix<T> quotiend, T dividend);
-        internal abstract void Transpose(IMatrix<T> target);
+        internal abstract void Add(BaseMatrix<T> augend, BaseMatrix<T> addend);
+        internal abstract void Add(BaseMatrix<T> augend, T addend);
+        internal abstract void Subtruct(BaseMatrix<T> minued, BaseMatrix<T> subtrahend);
+        internal abstract void Subtruct(BaseMatrix<T> minued, T subtrahend);
+        internal abstract void Multiply(BaseMatrix<T> multiplicand, BaseMatrix<T> multiplier);
+        internal abstract void Multiply(BaseMatrix<T> multiplicand, T multiplier);
+        internal abstract void Divide(BaseMatrix<T> quotiend, BaseMatrix<T> dividend);
+        internal abstract void Divide(BaseMatrix<T> quotiend, T dividend);
+        internal abstract void Transpose(BaseMatrix<T> target);
         internal abstract void Map(Func<T, T> func);
         internal abstract void Map(Func<T, T, T> func, T[] inputs);
 
         #region operators
-        public static IMatrix<T> operator +(IMatrix<T> augend, IMatrix<T> addend)
+        public static BaseMatrix<T> operator +(BaseMatrix<T> augend, BaseMatrix<T> addend)
         {
-            return augend.Add(addend);
+            augend.Add(addend);
+            return augend;
         }
 
         #endregion
 
         #region Validation
-        public bool IsValidForAddition(IMatrix<T> addend)
+        public bool IsValidForAddition(BaseMatrix<T> addend)
         {
             if (addend.RowCount != RowCount || addend.ColumnCount != ColumnCount)
                 return false;
