@@ -22,6 +22,16 @@ namespace AMath.Calculus.Matrices
         {
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be added"), exception);
         }
+
+        public static Exception Build(MatricesIsNotCompatibleForSubtruction exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be subtructed"), exception);
+        }
+
+        public static Exception Build(MatricesIsNotCompatibleForMultiplication exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be multiplied"), exception);
+        }
     }
 
     public class RowOutOfRangeException : Exception
@@ -35,6 +45,16 @@ namespace AMath.Calculus.Matrices
     }
 
     public class MatricesIsNotCompatibleForAddition : Exception
+    {
+
+    }
+
+    public class MatricesIsNotCompatibleForSubtruction : Exception
+    {
+
+    }
+
+    public class MatricesIsNotCompatibleForMultiplication : Exception
     {
 
     }

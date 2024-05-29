@@ -19,57 +19,42 @@ namespace AMath.Calculus.Matrices.Implementation
         }
 
         internal override void Add(BaseMatrix<float> augend, BaseMatrix<float> addend)
-        {
-            augend.Map(new Func<float, float, float>((x, y) => x + y), addend.Content.Values);
-        }
+            => augend.Map(new Func<float, float, float>((x, y) => x + y), addend.Content.Values);
 
         internal override void Add(BaseMatrix<float> augend, float addend)
-        {
-            throw new NotImplementedException();
-        }
+            => augend.Map(new Func<float, float>(x => x + addend));
 
-        internal override void Divide(BaseMatrix<float> quotiend, BaseMatrix<float> dividend)
-        {
-            throw new NotImplementedException();
-        }
 
         internal override void Divide(BaseMatrix<float> quotiend, float dividend)
-        {
-            throw new NotImplementedException();
-        }
+            => quotiend.Map(new Func<float, float>(x => x / dividend));
 
         internal override void Map(Func<float, float> func)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Content.Values.Length; i++)
+            {
+                Content.Values[i] = func(Content.Values[i]);
+            }
         }
 
         internal override void Map(Func<float, float, float> func, float[] inputs)
         {
-            for (int i = 0; i < inputs.Length; i++)
+            for (int i = 0; i < Content.Values.Length; i++)
             {
-                func(Content.Values[i], inputs[i]); 
+                Content.Values[i] = func(Content.Values[i], inputs[i]);
             }
         }
 
         internal override void Multiply(BaseMatrix<float> multiplicand, BaseMatrix<float> multiplier)
-        {
-            throw new NotImplementedException();
-        }
+            => multiplicand.Map(new Func<float, float, float>((x, y) => x * y), multiplier.Content.Values);
 
         internal override void Multiply(BaseMatrix<float> multiplicand, float multiplier)
-        {
-            throw new NotImplementedException();
-        }
+            => multiplicand.Map(new Func<float, float>(x => x * multiplier));
 
         internal override void Subtruct(BaseMatrix<float> minued, BaseMatrix<float> subtrahend)
-        {
-            throw new NotImplementedException();
-        }
+            => minued.Map(new Func<float, float, float>((x, y) => x - y), subtrahend.Content.Values);
 
         internal override void Subtruct(BaseMatrix<float> minued, float subtrahend)
-        {
-            throw new NotImplementedException();
-        }
+            => minued.Map(new Func<float, float>(x => x - subtrahend));
 
         internal override void Transpose(BaseMatrix<float> target)
         {
