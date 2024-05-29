@@ -40,20 +40,48 @@ namespace AMath.Calculus.Matrices
 
         public void Add(BaseMatrix<T> addend)
         {
-            if (IsValidForAddition(addend))
+            if (!IsValidForAddition(addend))
                 throw new MatricesIsNotCompatibleForAddition();
 
             Add(this, addend);
         }
-
+        public void Add(T scalar) => Add(this, scalar);
         internal abstract void Add(BaseMatrix<T> augend, BaseMatrix<T> addend);
         internal abstract void Add(BaseMatrix<T> augend, T addend);
+
+        public void Subtruct(BaseMatrix<T> subtrahend)
+        {
+            if (!IsValidForAddition(subtrahend))
+                throw new MatricesIsNotCompatibleForSubtruction();
+
+            Subtruct(this, subtrahend);
+        }
+        public void Subtruct(T scalar) => Subtruct(this, scalar);
         internal abstract void Subtruct(BaseMatrix<T> minued, BaseMatrix<T> subtrahend);
         internal abstract void Subtruct(BaseMatrix<T> minued, T subtrahend);
+
+        public void Multiply(BaseMatrix<T> multiplier)
+        {
+            if (!IsValidForMultiplication(multiplier))
+                throw new MatricesIsNotCompatibleForMultiplication();
+
+            Multiply(this, multiplier);
+        }
+        public void Multiply(T scalar) => Multiply(this, scalar);
         internal abstract void Multiply(BaseMatrix<T> multiplicand, BaseMatrix<T> multiplier);
         internal abstract void Multiply(BaseMatrix<T> multiplicand, T multiplier);
-        internal abstract void Divide(BaseMatrix<T> quotiend, BaseMatrix<T> dividend);
+
+        
+        public void Divide(BaseMatrix<T> multiplier)
+        {
+            if (!IsValidForDivision(multiplier))
+                throw new MatricesIsNotCompatibleForMultiplication();
+
+            //TODO: Implement
+        }
+        public void Divide(T scalar) => Divide(this, scalar);
         internal abstract void Divide(BaseMatrix<T> quotiend, T dividend);
+
         internal abstract void Transpose(BaseMatrix<T> target);
         internal abstract void Map(Func<T, T> func);
         internal abstract void Map(Func<T, T, T> func, T[] inputs);
@@ -74,6 +102,24 @@ namespace AMath.Calculus.Matrices
                 return false;
 
             return true;
+        }
+        public bool IsValidForSubtruction(BaseMatrix<T> subtrahend)
+        {
+            return IsValidForAddition(subtrahend);
+        }
+
+        public bool IsValidForMultiplication(BaseMatrix<T> addend)
+        {
+            if (addend.RowCount != ColumnCount)
+                return false;
+
+            return true;
+        }
+
+        public bool IsValidForDivision(BaseMatrix<T> addend)
+        {
+            //TODO: Division is coupled with determinant problem
+            return false;
         }
         #endregion
 
