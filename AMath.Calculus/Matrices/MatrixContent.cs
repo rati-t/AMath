@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AMath.Calculus.Matrix
+namespace AMath.Calculus.Matrices
 {
     public class MatrixContent<T>
         where T : struct, IEquatable<T>
     {
         public MatrixContent(int rowCount, int columnCount, T[] content)
         {
-            _content = content;
+            Values = content;
             RowCount = rowCount;
             ColumnCount = columnCount;
         }
 
         public MatrixContent(int rowCount, int columnCount)
         {
-            _content = new T[rowCount * columnCount];
+            Values = new T[rowCount * columnCount];
             RowCount = rowCount;
             ColumnCount = columnCount;
         }
 
-        private T[] _content { get; set; }
+        internal T[] Values { get; set; }
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
 
@@ -37,7 +37,7 @@ namespace AMath.Calculus.Matrix
                 if (!IsColumnInRange(column))
                     throw MatrixExceptionHelper.Build(new ColumnOutOfRangeException());
 
-                return _content[GetIndex(row, column)];
+                return Values[GetIndex(row, column)];
             }
 
             set
@@ -48,11 +48,11 @@ namespace AMath.Calculus.Matrix
                 if (!IsColumnInRange(column))
                     throw MatrixExceptionHelper.Build(new ColumnOutOfRangeException());
 
-                _content[GetIndex(row, column)] = value;
+                Values[GetIndex(row, column)] = value;
             }
         }
 
-        private int GetIndex(int row, int column) => column * RowCount + row;
+        public int GetIndex(int row, int column) => column * RowCount + row;
 
         #region Validation
         public bool IsInRange(int row, int column)
