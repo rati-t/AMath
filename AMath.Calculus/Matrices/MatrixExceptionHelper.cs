@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AMath.Calculus.Matrix
+namespace AMath.Calculus.Matrices
 {
     public static class MatrixExceptionHelper
     {
