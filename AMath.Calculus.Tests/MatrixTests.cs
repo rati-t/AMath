@@ -1,16 +1,17 @@
-using AMath.Calculus.Matrix;
+using AMath.Calculus.Matrices;
+using AMath.Calculus.Matrices.Implementation;
 
 namespace AMath.Calculus.Tests
 {
     public class MatrixTests
     {
-        public Matrix<int> IntegerMatrix { get; set; }
+        public Matrix IntegerMatrix { get; set; }
 
 
         [SetUp]
         public void Setup()
         {
-            IntegerMatrix = new Matrix<int>(new MatrixContent<int>(2, 2, new int[] {1, 2, 3, 4}));
+            IntegerMatrix = new Matrix(new MatrixContent<float>(2, 2, new float[] { 1, 2, 3, 4 }));
         }
 
         [Test]
@@ -23,7 +24,7 @@ namespace AMath.Calculus.Tests
         [Test]
         public void Set()
         {
-            var matrix = new Matrix<int>(new MatrixContent<int>(2, 2, new int[] { 1, 2, 3, 4 }));
+            var matrix = new Matrix(new MatrixContent<float>(2, 2, new float[] { 1, 2, 3, 4 }));
             var row = 0;
             var column = 0;
             var value = 12;
@@ -33,6 +34,33 @@ namespace AMath.Calculus.Tests
 
             var result = matrix.Get(row, column);
             Assert.That(result == value);
+        }
+
+        [Test]
+        public void Add()
+        {
+            float[] augendValues = new float[] { 1f, 2f, 3f, 4f };
+            float[] addendValues = new float[] { 1f, 1f, 1f, 1f };
+
+            float[] sums = new float[augendValues.Length];
+
+            for (int i = 0; i < augendValues.Length; i++)
+            {
+                sums[i] = augendValues[i] + addendValues[i];
+            }
+
+            var matrixAugend = new Matrix(new MatrixContent<float>(2, 2, augendValues));
+            var matrixAddend = new Matrix(new MatrixContent<float>(2, 2, addendValues));
+
+            matrixAugend.Add(matrixAddend);
+
+            for (var i = 0; i < matrixAugend.RowCount; i++) 
+            {
+                for (int i = 0; i < matrixAugend.ColumnCount; i++)
+                {
+                    Assert.That(sums[i] == matrixAugend.Get(matrixAugend.);
+                }
+            }
         }
     }
 }
