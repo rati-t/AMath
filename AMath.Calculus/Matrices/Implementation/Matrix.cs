@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.Matrices.Implementation
 {
-    public class Matrix : IMatrix<float>
+    public class Matrix : BaseMatrix<float>
     {
         public Matrix(MatrixContent<float> content) : base(content)
         {
@@ -18,22 +18,22 @@ namespace AMath.Calculus.Matrices.Implementation
             _builder = new MatrixBuilder();
         }
 
-        internal override void Add(IMatrix<float> augend, IMatrix<float> addend)
+        internal override void Add(BaseMatrix<float> augend, BaseMatrix<float> addend)
         {
             augend.Map(new Func<float, float, float>((x, y) => x + y), addend.Content.Values);
         }
 
-        internal override void Add(IMatrix<float> augend, float addend)
+        internal override void Add(BaseMatrix<float> augend, float addend)
         {
             throw new NotImplementedException();
         }
 
-        internal override void Divide(IMatrix<float> quotiend, IMatrix<float> dividend)
+        internal override void Divide(BaseMatrix<float> quotiend, BaseMatrix<float> dividend)
         {
             throw new NotImplementedException();
         }
 
-        internal override void Divide(IMatrix<float> quotiend, float dividend)
+        internal override void Divide(BaseMatrix<float> quotiend, float dividend)
         {
             throw new NotImplementedException();
         }
@@ -51,27 +51,27 @@ namespace AMath.Calculus.Matrices.Implementation
             }
         }
 
-        internal override void Multiply(IMatrix<float> multiplicand, IMatrix<float> multiplier)
+        internal override void Multiply(BaseMatrix<float> multiplicand, BaseMatrix<float> multiplier)
         {
             throw new NotImplementedException();
         }
 
-        internal override void Multiply(IMatrix<float> multiplicand, float multiplier)
+        internal override void Multiply(BaseMatrix<float> multiplicand, float multiplier)
         {
             throw new NotImplementedException();
         }
 
-        internal override void Subtruct(IMatrix<float> minued, IMatrix<float> subtrahend)
+        internal override void Subtruct(BaseMatrix<float> minued, BaseMatrix<float> subtrahend)
         {
             throw new NotImplementedException();
         }
 
-        internal override void Subtruct(IMatrix<float> minued, float subtrahend)
+        internal override void Subtruct(BaseMatrix<float> minued, float subtrahend)
         {
             throw new NotImplementedException();
         }
 
-        internal override void Transpose(IMatrix<float> target)
+        internal override void Transpose(BaseMatrix<float> target)
         {
             throw new NotImplementedException();
         }

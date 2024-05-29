@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.Matrices
 {
-    public abstract class IMatrixBuilder<T>
+    public abstract class BaseMatrixBuilder<T>
         where T : struct, IEquatable<T>
     {
-        public abstract IMatrix<T> Like(int rows, int columns);
+        public abstract BaseMatrix<T> Like(int rows, int columns);
     }
 }

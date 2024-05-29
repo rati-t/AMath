@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.Matrices.Implementation
 {
-    public class MatrixBuilder : IMatrixBuilder<float>
+    public class MatrixBuilder : BaseMatrixBuilder<float>
     {
-        public override IMatrix<float> Like(int rows, int columns)
+        public override BaseMatrix<float> Like(int rows, int columns)
         {
             return new Matrix(rows, columns);
         }
