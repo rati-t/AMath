@@ -23,14 +23,29 @@ namespace AMath.Calculus.Matrices
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be added"), exception);
         }
 
+        public static Exception Build(MatrixAndVectorNotCompatibleForAddition exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Vector can not be added to matrix"), exception);
+        }
+
         public static Exception Build(MatricesIsNotCompatibleForSubtruction exception)
         {
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be subtructed"), exception);
         }
 
+        public static Exception Build(MatrixAndVectorNotCompatibleForSubtruction exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Vector can not be subtructed from matrix"), exception);
+        }
+
         public static Exception Build(MatricesIsNotCompatibleForMultiplication exception)
         {
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be multiplied"), exception);
+        }
+
+        public static Exception Build(MatrixAndVectorNotCompatibleForMultiplication exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Vector and matrix can not be multiplied"), exception);
         }
     }
 
@@ -49,12 +64,27 @@ namespace AMath.Calculus.Matrices
 
     }
 
+    public class MatrixAndVectorNotCompatibleForAddition : Exception
+    {
+
+    }
+
     public class MatricesIsNotCompatibleForSubtruction : Exception
     {
 
     }
 
+    public class MatrixAndVectorNotCompatibleForSubtruction : Exception
+    {
+
+    }
+
     public class MatricesIsNotCompatibleForMultiplication : Exception
+    {
+
+    }
+
+    public class MatrixAndVectorNotCompatibleForMultiplication : Exception
     {
 
     }

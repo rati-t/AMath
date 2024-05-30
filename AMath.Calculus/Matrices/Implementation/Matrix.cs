@@ -24,6 +24,11 @@ namespace AMath.Calculus.Matrices.Implementation
         internal override void Add(BaseMatrix<float> augend, float addend)
             => augend.Map(new Func<float, float>(x => x + addend));
 
+        internal override void AddToRow(BaseMatrix<float> augend, float[] values, int row)
+            => augend.MapRow(new Func<float, float, float>((x, y) => x + y), values, row);
+
+        internal override void AddToRow(BaseMatrix<float> augend, float addend, int row)
+            => augend.MapRow(new Func<float, float>(x => x + addend), row);
 
         internal override void Divide(BaseMatrix<float> quotiend, float dividend)
             => quotiend.Map(new Func<float, float>(x => x / dividend));
@@ -44,11 +49,50 @@ namespace AMath.Calculus.Matrices.Implementation
             }
         }
 
+        internal override void MapColumn(Func<float, float> func, int column)
+        {
+            for (int i = column * RowCount; i < (column + 1) * RowCount; i++)
+            {
+                Content.Values[i] = func(Content.Values[i]);
+            }
+        }
+
+        internal override void MapColumn(Func<float, float, float> func, float[] inputs, int column)
+        {
+
+            for (int i = column * RowCount; i < (column + 1) * RowCount; i++)
+            {
+                Content.Values[i] = func(Content.Values[i], inputs[i % RowCount]);
+            }
+        }
+
+        internal override void MapRow(Func<float, float> func, int row)
+        {
+            for (int i = row; i < Content.Values.Length; i += RowCount)
+            {
+                Content.Values[i] = func(Content.Values[i]);
+            }
+        }
+
+        internal override void MapRow(Func<float, float, float> func, float[] inputs, int row)
+        {
+            for (int i = row; i < Content.Values.Length; i += RowCount)
+            {
+                Content.Values[i] = func(Content.Values[i], inputs[i / RowCount]);
+            }
+        }
+
         internal override void Multiply(BaseMatrix<float> multiplicand, BaseMatrix<float> multiplier)
             => multiplicand.Map(new Func<float, float, float>((x, y) => x * y), multiplier.Content.Values);
 
         internal override void Multiply(BaseMatrix<float> multiplicand, float multiplier)
             => multiplicand.Map(new Func<float, float>(x => x * multiplier));
+
+        internal override void MultiplyRow(BaseMatrix<float> multiplicand, float[] multiplier, int row)
+            => multiplicand.MapRow(new Func<float, float, float>((x, y) => x * y), multiplier, row);
+
+        internal override void MultiplyRow(BaseMatrix<float> multiplicand, float value, int row)
+            => multiplicand.MapRow(new Func<float, float>(x => x * value), row);
 
         internal override void Subtruct(BaseMatrix<float> minued, BaseMatrix<float> subtrahend)
             => minued.Map(new Func<float, float, float>((x, y) => x - y), subtrahend.Content.Values);
@@ -56,9 +100,10 @@ namespace AMath.Calculus.Matrices.Implementation
         internal override void Subtruct(BaseMatrix<float> minued, float subtrahend)
             => minued.Map(new Func<float, float>(x => x - subtrahend));
 
-        internal override void Transpose(BaseMatrix<float> target)
-        {
-            throw new NotImplementedException();
-        }
+        internal override void SubtructFromRow(BaseMatrix<float> minued, float[] subtrahend, int row)
+            => minued.MapRow(new Func<float, float, float>((x, y) => x - y), subtrahend, row);
+
+        internal override void SubtructFromRow(BaseMatrix<float> minued, float scalar, int row)
+            => minued.MapRow(new Func<float, float>(x => x - scalar), row);
     }
 }
