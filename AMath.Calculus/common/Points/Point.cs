@@ -32,6 +32,17 @@ namespace AMath.Calculus.common.Points
             throw new NotImplementedException();
         }
 
-        public abstract Point<T> operator +(Point<T> first, Point<T> second);
+        public abstract Point<T> Add(Point<T> other);
+        public abstract Point<T> Subtract(Point<T> other);
+
+        public static Point<T> operator +(Point<T> first, Point<T> second)
+        {
+            return first.Add(second);
+        }
+        public static Point<T> operator -(Point<T> first, Point<T> second)
+        {
+            return first.Subtract(second);
+        }
+
     }
 }

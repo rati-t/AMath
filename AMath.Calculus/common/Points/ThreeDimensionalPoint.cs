@@ -13,5 +13,15 @@ namespace AMath.Calculus.common.Points
         {
             ZCoordinate = zCoordinate;
         }
+
+        public override Point<T> Add(Point<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Point<T> Subtract(Point<T> other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
