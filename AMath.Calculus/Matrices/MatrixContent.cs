@@ -24,8 +24,8 @@ namespace AMath.Calculus.Matrices
         }
 
         internal T[] Values { get; set; }
-        public int RowCount { get; private set; }
-        public int ColumnCount { get; private set; }
+        public int RowCount { get; internal set; }
+        public int ColumnCount { get; internal set; }
 
         public T this[int row, int column]
         {
@@ -52,7 +52,25 @@ namespace AMath.Calculus.Matrices
             }
         }
 
+        public IEnumerable<T> GetRow(int row)
+        {
+            if (!IsRowInRange(row))
+                throw MatrixExceptionHelper.Build(new RowOutOfRangeException());
+
+            return Values.Where((a, i) => i % RowCount == row);
+        }
+
+        public IEnumerable<T> GetColumn(int column)
+        {
+            if (!IsRowInRange(column))
+                throw MatrixExceptionHelper.Build(new RowOutOfRangeException());
+
+            return Values.Where((a, i) => i / RowCount == column);
+        }
+
+
         public int GetIndex(int row, int column) => column * RowCount + row;
+        public int GetTransposedIndex(int row, int column) => row * ColumnCount + column;
         public (int, int) GetCoordinates(int index) => (index % RowCount, index / RowCount);
 
         #region Validation
