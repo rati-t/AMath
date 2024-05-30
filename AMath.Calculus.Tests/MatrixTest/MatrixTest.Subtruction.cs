@@ -28,34 +28,7 @@ namespace AMath.Calculus.Tests.MatrixTest
 
             matrixMinued.Subtruct(matrixSubtrahend);
 
-            for (var i = 0; i < matrixMinued.RowCount; i++)
-            {
-                for (int j = 0; j < matrixMinued.ColumnCount; j++)
-                {
-                    Assert.That(sums[matrixMinued.GetIndex(i, j)] == matrixMinued.Get(i, j));
-                }
-            }
-        }
-
-        [Test]
-        public void SubtructVectorFromMatrixRow()
-        {
-            float[] minuedValues = new float[] { 1f, 2f, 3f, 4f };
-            float[] subtrahendValues = new float[] { 1f, 1f };
-            float[] result = new float[4] { 0f, 2f, 2f, 4f };
-            var row = 0;
-
-            var matrixMinued = new Matrix(new MatrixContent<float>(2, 2, minuedValues));
-
-            matrixMinued.SubtructFromRow(subtrahendValues, row);
-
-            for (var i = 0; i < matrixMinued.RowCount; i++)
-            {
-                for (int j = 0; j < matrixMinued.ColumnCount; j++)
-                {
-                    Assert.That(result[matrixMinued.GetIndex(i, j)] == matrixMinued.Get(i, j));
-                }
-            }
+            Assert.That(IsEqual(matrixMinued.GetValues(), sums));
         }
 
         [Test]
@@ -75,14 +48,24 @@ namespace AMath.Calculus.Tests.MatrixTest
 
             matrixMinued.Subtruct(scalar);
 
-            for (var i = 0; i < matrixMinued.RowCount; i++)
-            {
-                for (int j = 0; j < matrixMinued.ColumnCount; j++)
-                {
-                    Assert.That(result[matrixMinued.GetIndex(i, j)] == matrixMinued.Get(i, j));
-                }
-            }
+            Assert.That(IsEqual(matrixMinued.GetValues(), result));
         }
+
+        [Test]
+        public void SubtructVectorFromMatrixRow()
+        {
+            float[] minuedValues = new float[] { 1f, 2f, 3f, 4f };
+            float[] subtrahendValues = new float[] { 1f, 1f };
+            float[] result = new float[4] { 0f, 2f, 2f, 4f };
+            var row = 0;
+
+            var matrixMinued = new Matrix(new MatrixContent<float>(2, 2, minuedValues));
+
+            matrixMinued.SubtructFromRow(subtrahendValues, row);
+
+            Assert.That(IsEqual(matrixMinued.GetValues(), result));
+        }
+
 
         [Test]
         public void SubtructScalarFromMatrixRow()
@@ -96,13 +79,38 @@ namespace AMath.Calculus.Tests.MatrixTest
 
             matrixMinued.SubtructFromRow(scalar, row);
 
-            for (var i = 0; i < matrixMinued.RowCount; i++)
-            {
-                for (int j = 0; j < matrixMinued.ColumnCount; j++)
-                {
-                    Assert.That(result[matrixMinued.GetIndex(i, j)] == matrixMinued.Get(i, j));
-                }
-            }
+            Assert.That(IsEqual(matrixMinued.GetValues(), result));
+        }
+
+        [Test]
+        public void SubtructVectorFromMatrixColumn()
+        {
+            float[] minuedValues = new float[] { 1f, 2f, 3f, 4f };
+            float[] subtrahendValues = new float[] { 1f, 1f };
+            float[] result = new float[4] { 0f, 1f, 3f, 4f };
+            var column = 0;
+
+            var matrixMinued = new Matrix(new MatrixContent<float>(2, 2, minuedValues));
+
+            matrixMinued.SubtructFromColumn(subtrahendValues, column);
+
+            Assert.That(IsEqual(matrixMinued.GetValues(), result));
+        }
+
+
+        [Test]
+        public void SubtructScalarFromMatrixColumn()
+        {
+            float[] minuedValues = new float[] { 1f, 2f, 3f, 4f };
+            float scalar = 4f;
+            float[] result = new float[4] { -3f, -2f, 3f, 4f };
+            int column = 0;
+
+            var matrixMinued = new Matrix(new MatrixContent<float>(2, 2, minuedValues));
+
+            matrixMinued.SubtructFromColumn(scalar, column);
+
+            Assert.That(IsEqual(matrixMinued.GetValues(), result));
         }
     }
 }
