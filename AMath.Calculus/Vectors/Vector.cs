@@ -6,10 +6,6 @@ namespace AMath.Calculus.Vectors
 {
     public class Vector : BaseVector<float>
     {
-        internal Point<float> StartPoint { get; set; }
-        internal Point<float> EndPoint { get; set; }
-        internal Point<float> ActualPoint { get; set; }
-
         public Vector(float startX, float startY, float endX, float endY) 
         {  
             StartPoint = new TwoDimensionalPoint(startX, startY); 
@@ -31,9 +27,14 @@ namespace AMath.Calculus.Vectors
             ActualPoint = StartPoint - EndPoint;
         }
 
-        public static Vector operator + (Vector first, Vector second)
+        internal override BaseVector<float> Add(BaseVector<float> other)
         {
-            return null;
+            return new Vector(StartPoint, StartPoint + (ActualPoint + other.ActualPoint));
+        }
+
+        internal override BaseVector<float> Subtract(BaseVector<float> other)
+        {
+            return new Vector(StartPoint, StartPoint + (ActualPoint - other.ActualPoint));
         }
     }
 }

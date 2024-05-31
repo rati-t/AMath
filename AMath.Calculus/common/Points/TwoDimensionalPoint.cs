@@ -10,6 +10,7 @@ namespace AMath.Calculus.common.Points
     {
         public TwoDimensionalPoint(float xCoordinate, float yCoordinate) : base(xCoordinate, yCoordinate)
         { 
+
         }
 
         public override Point<float> Add(Point<float> other)
@@ -19,7 +20,7 @@ namespace AMath.Calculus.common.Points
 
         public override Point<float> Subtract(Point<float> other)
         {
-            throw new NotImplementedException();
+            return new TwoDimensionalPoint(XCoordinate - other.XCoordinate, YCoordinate - other.YCoordinate);
         }
     }
 }
