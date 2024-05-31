@@ -11,6 +11,9 @@ namespace AMath.Calculus.Matrices
     {
         public MatrixContent(int rowCount, int columnCount, T[] content)
         {
+            if (content.Length != rowCount * columnCount)
+                throw new Exception();
+
             Values = content;
             RowCount = rowCount;
             ColumnCount = columnCount;

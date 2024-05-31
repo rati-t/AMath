@@ -1,41 +1,101 @@
-﻿using AMath.Calculus.Matrices.Implementation;
+﻿using AMath.Calculus.common.Graph;
+using AMath.Calculus.Matrices;
+using AMath.Calculus.Matrices.Implementation;
+using System.Diagnostics.Metrics;
 
-namespace Algorithm.PathFinding
+namespace AMath.Algorithms
 {
     public static class Bellman
     {
         public static List<int> ShortestPath(Matrix graph, int sourceIndex, int destinationIndex)
         {
-            #region Initialization
-            var nodeCount = graph.RowCount;
+            var edges = graph.GetEdges();
+            BellManResult<float> bellmanResult = DoesNegativeCycleExist(edges, graph.RowCount, sourceIndex, destinationIndex);
 
-            var distances = new List<float>();
-            var predecessor = new List<int>();
+            if (bellmanResult == null)
+                throw new Exception();
 
-            for (int i = 0; i < nodeCount; i++) 
+            if (bellmanResult.ContainsNegativeCycle)
+                throw new NegativeCycleException(bellmanResult.NegativeCycleVertices);
+
+            return bellmanResult.Route;
+        }
+
+        private static BellManResult<float> DoesNegativeCycleExist(List<Edge<float>> edges, int verticesCount, int source, int destination)
+        {
+            List<int> negCycleVertices = new List<int>();
+
+            // Initializaiton
+            var path = new List<int>();
+            float[] dist = new float[verticesCount];
+            int[] prev = new int[verticesCount];
+            Array.Fill(dist, float.MaxValue);
+            dist[source] = 0;
+
+            // relaxation for N - 1 
+            for (int k = 0; k < verticesCount - 1; k++)
             {
-                distances.Add(float.MaxValue);
-                predecessor.Add(-1);
-            }
-            distances[sourceIndex] = 0;
-            #endregion
-
-            for (int i = 1; i < nodeCount - 1; i++)
-            {
-                for (int j = 0; j < nodeCount - 1 && i != j; j++)
+                foreach (var edge in edges)
                 {
-                    float weight = graph.Get(i, j);
-                    if (weight == 0 || distances[i] + weight >= distances[j])
-                        continue;
+                    int src = edge.Source;
+                    int dest = edge.Destination;
+                    float weight = edge.Weight;
 
-                    distances[j] = distances[i] + weight;
-                    predecessor[j] = i;
+                    if (dist[src] + weight < dist[dest])
+                    {
+                        dist[dest] = dist[src] + weight;
+                        prev[dest] = src;
+                    }
                 }
             }
 
+            // Nth relaxation
+            foreach (var edge in edges)
+            {
+                int src = edge.Source;
+                int dest = edge.Destination;
+                float weight = edge.Weight;
 
+                // if true, Negative Cycle exist
+                if (dist[src] + weight < dist[dest])
+                {
+                    negCycleVertices.Add(dest);
+                    negCycleVertices.Add(src);
+                }
+            }
 
-            return new List<int>();
+            negCycleVertices = negCycleVertices.Distinct().ToList();
+
+            if (negCycleVertices.Count > 0)
+                return new BellManResult<float>(true, negCycleVertices.ToArray(), dist, path);
+
+            int current = destination;
+            while (current != source)
+            {
+                path.Add(current);
+                current = prev[current];
+            }
+
+            path.Reverse();
+
+            return new BellManResult<float>(false, negCycleVertices.ToArray(), dist, path);
+        }
+
+        private class BellManResult<T>
+        {
+            public BellManResult(bool containsNegativeCycle, int[] negativeCycleVertices, T[] distancesFromSource, List<int> route)
+            {
+                ContainsNegativeCycle = containsNegativeCycle;
+                NegativeCycleVertices = negativeCycleVertices;
+                DistancesFromSource = distancesFromSource;
+                Route = route;
+
+            }
+            public bool ContainsNegativeCycle { get; set; }
+            public int[] NegativeCycleVertices { get; set; }
+            public T[] DistancesFromSource { get; set; }
+            public List<int> Route { get; set; }    
         }
     }
 }
+
