@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMath.Calculus.common.Points;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,40 @@ namespace AMath.Calculus.Vectors
 {
     public abstract class BaseVector<T> where T : struct, IEquatable<T>
     {
+        internal Point<T> StartPoint { get; set; }
+        internal Point<T> EndPoint { get; set; }
+        internal Point<T> ActualPoint { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj != null && obj is BaseVector<T> other)
+            {
+                return StartPoint.Equals(other.StartPoint) && EndPoint.Equals(other.EndPoint) && ActualPoint.Equals(other.ActualPoint);
+            }
+            return false;
+        }
+
+
+        internal abstract BaseVector<T> Add(BaseVector<T> other);
+        internal abstract BaseVector<T> Subtract(BaseVector<T> other);
+
+        public static BaseVector<T> operator +(BaseVector<T> first, BaseVector<T> second)
+        {
+            return first.Add(second);
+        }
+        public static BaseVector<T> operator -(BaseVector<T> first, BaseVector<T> second)
+        {
+            return first.Subtract(second);
+        }
+
+        public static bool operator ==(BaseVector<T> first, BaseVector<T> second)
+        {
+            return first.Equals(second);
+        }
+        public static bool operator !=(BaseVector<T> first, BaseVector<T> second)
+        {
+            return first.Equals(second);
+        }
+
     }
 }
