@@ -5,10 +5,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using AMath.Calculus.common.Points.Implementation;
+
 namespace AMath.Calculus.common.Points
 {
     internal abstract class Point<T> where T : struct, IEquatable<T>
     {     
+        protected BasePointBuilder<T>? _builder;
         internal T XCoordinate { get; set; }
         internal T YCoordinate { get; set; }
 
@@ -20,11 +23,7 @@ namespace AMath.Calculus.common.Points
 
         public override bool Equals(object? obj)
         {
-            if (obj != null && obj is TwoDimensionalPoint other)
-            {
-                return XCoordinate.Equals(other.XCoordinate) && YCoordinate.Equals(other.YCoordinate);
-            }
-            return false;
+            return base.Equals(obj);
         }
 
         public override int GetHashCode()
@@ -42,6 +41,16 @@ namespace AMath.Calculus.common.Points
         public static Point<T> operator -(Point<T> first, Point<T> second)
         {
             return first.Subtract(second);
+        }
+
+        public static bool operator ==(Point<T> first, Point<T> second)
+        {
+            return first.Equals(second);
+        }
+
+        public static bool operator !=(Point<T> first, Point<T> second)
+        {
+            return !first.Equals(second);
         }
 
     }
