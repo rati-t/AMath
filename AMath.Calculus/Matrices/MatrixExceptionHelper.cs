@@ -23,9 +23,14 @@ namespace AMath.Calculus.Matrices
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be added"), exception);
         }
 
-        public static Exception Build(MatrixAndVectorNotCompatibleForAddition exception)
+        public static Exception Build(MatrixAndRowNotCompatibleForAddition exception)
         {
-            return new ArgumentOutOfRangeException(message: String.Format("Vector can not be added to matrix"), exception);
+            return new ArgumentOutOfRangeException(message: String.Format("Row can not be added to matrix"), exception);
+        }
+
+        public static Exception Build(MatrixAndColumnNotCompatibleForAddition exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Column can not be added to matrix"), exception);
         }
 
         public static Exception Build(MatricesIsNotCompatibleForSubtruction exception)
@@ -33,9 +38,14 @@ namespace AMath.Calculus.Matrices
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be subtructed"), exception);
         }
 
-        public static Exception Build(MatrixAndVectorNotCompatibleForSubtruction exception)
+        public static Exception Build(MatrixAndRowCompatibleForSubtruction exception)
         {
-            return new ArgumentOutOfRangeException(message: String.Format("Vector can not be subtructed from matrix"), exception);
+            return new ArgumentOutOfRangeException(message: String.Format("Row can not be subtructed from matrix"), exception);
+        }
+
+        public static Exception Build(MatrixAndColumnCompatibleForSubtruction exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Column can not be subtructed from matrix"), exception);
         }
 
         public static Exception Build(MatricesIsNotCompatibleForMultiplication exception)
@@ -43,9 +53,19 @@ namespace AMath.Calculus.Matrices
             return new ArgumentOutOfRangeException(message: String.Format("Matrices can not be multiplied"), exception);
         }
 
-        public static Exception Build(MatrixAndVectorNotCompatibleForMultiplication exception)
+        public static Exception Build(MatrixAndRowNotCompatibleForMultiplication exception)
         {
-            return new ArgumentOutOfRangeException(message: String.Format("Vector and matrix can not be multiplied"), exception);
+            return new ArgumentOutOfRangeException(message: String.Format("Row and matrix can not be multiplied"), exception);
+        }
+
+        public static Exception Build(MatrixAndColumnNotCompatibleForMultiplication exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Column and matrix can not be multiplied"), exception);
+        }
+        
+        public static Exception Build(MatricesIsNotCompatibleForDivison exception)
+        {
+            return new ArgumentOutOfRangeException(message: String.Format("Matrices is not comaptible for divison"), exception);
         }
     }
 
@@ -64,7 +84,12 @@ namespace AMath.Calculus.Matrices
 
     }
 
-    public class MatrixAndVectorNotCompatibleForAddition : Exception
+    public class MatrixAndRowNotCompatibleForAddition : Exception
+    {
+
+    }
+
+    public class MatrixAndColumnNotCompatibleForAddition : Exception
     {
 
     }
@@ -74,17 +99,32 @@ namespace AMath.Calculus.Matrices
 
     }
 
-    public class MatrixAndVectorNotCompatibleForSubtruction : Exception
+    public class MatrixAndRowCompatibleForSubtruction : Exception
     {
 
     }
+    public class MatrixAndColumnCompatibleForSubtruction : Exception
+    {
+
+    }
+
 
     public class MatricesIsNotCompatibleForMultiplication : Exception
     {
 
     }
 
-    public class MatrixAndVectorNotCompatibleForMultiplication : Exception
+    public class MatrixAndRowNotCompatibleForMultiplication : Exception
+    {
+
+    }
+
+    public class MatrixAndColumnNotCompatibleForMultiplication : Exception
+    {
+
+    }
+
+    public class MatricesIsNotCompatibleForDivison : Exception
     {
 
     }

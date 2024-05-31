@@ -71,7 +71,7 @@ namespace AMath.Calculus.Matrices
 
         public int GetIndex(int row, int column) => column * RowCount + row;
         public int GetTransposedIndex(int row, int column) => row * ColumnCount + column;
-        public (int, int) GetCoordinates(int index) => (index % RowCount, index / RowCount);
+        public (int, int) GetCoordinates(int index) => (NthRow(index), NthColumn(index));
 
         #region Validation
         public bool IsInRange(int row, int column)
@@ -88,6 +88,10 @@ namespace AMath.Calculus.Matrices
         {
             return column >= 0 && column < ColumnCount;
         }
+
+        internal int NthRow(int index) => index % RowCount;
+        internal int NthColumn(int index) => index / RowCount;
+
         #endregion
 
     }

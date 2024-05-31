@@ -27,13 +27,7 @@ namespace AMath.Calculus.Tests.MatrixTest
 
             matrixAugend.Divide(scalar);
 
-            for (var i = 0; i < matrixAugend.RowCount; i++)
-            {
-                for (int j = 0; j < matrixAugend.ColumnCount; j++)
-                {
-                    Assert.That(sums[matrixAugend.GetIndex(i, j)] == matrixAugend.Get(i, j));
-                }
-            }
+            Assert.That(IsEqual(matrixAugend.GetValues(), sums));
         }
     }
 }
