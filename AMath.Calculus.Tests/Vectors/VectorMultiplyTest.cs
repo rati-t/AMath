@@ -136,5 +136,23 @@ namespace AMath.Calculus.Tests.Vectors
             Assert.That(predictedResult == newVector);
         }
 
+        [Test]
+        public void CrossProduct3D()
+        {
+            var predictedResult = new Vector(-13, -31, -2);
+            var newVector = FirstVector3D.CrossProduct(SecondVector3D);
+
+            Assert.That(predictedResult == newVector);
+        }
+
+        [Test]
+        public void CrossProductWithOrigin()
+        {
+            var predictedResult = new Vector(1, 2, 3, 1, 2, 3);
+            var newVector = FirstVector3DWithOrigin.CrossProduct(SecondVector3DWithOrigin);
+
+            Assert.That(predictedResult == newVector);
+        }
+
     }
 }

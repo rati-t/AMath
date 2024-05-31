@@ -28,6 +28,7 @@ namespace AMath.Calculus.Vectors
         public abstract BaseVector<T> ScalarMultiply(T other);
         public abstract BaseVector<T> Multiply(BaseVector<T> other);
         public abstract T DotProduct(BaseVector<T> other);
+        public abstract BaseVector<T> CrossProduct(BaseVector<T> other);
 
         public static BaseVector<T> operator +(BaseVector<T> first, BaseVector<T> second)
         {

@@ -38,7 +38,7 @@ namespace AMath.Calculus.common.Points.Implementation
                     ZCoordinate - other3D.ZCoordinate
                 );
             }
-            throw new ArgumentException("The point to add must be of type ThreeDimensionalPoint.");
+            throw new ArgumentException("The point to subtract must be of type ThreeDimensionalPoint.");
         }
 
         public override bool Equals(object? obj)
@@ -61,7 +61,7 @@ namespace AMath.Calculus.common.Points.Implementation
             {
                 return (XCoordinate * other3D.XCoordinate) + (YCoordinate * other3D.YCoordinate) + (ZCoordinate * other3D.ZCoordinate);
             }
-            throw new ArgumentException("The point to add must be of type ThreeDimensionalPoint.");
+            throw new ArgumentException("The point to DotProduct must be of type ThreeDimensionalPoint.");
         }
 
         public override Point<float> Multiply(Point<float> other)
@@ -70,7 +70,16 @@ namespace AMath.Calculus.common.Points.Implementation
             {
                 return new ThreeDimensionalPoint(XCoordinate * other3D.XCoordinate, YCoordinate * other3D.YCoordinate, ZCoordinate * other3D.ZCoordinate);
             }
-            throw new ArgumentException("The point to add must be of type ThreeDimensionalPoint.");
+            throw new ArgumentException("The point to multiply must be of type ThreeDimensionalPoint.");
+        }
+
+        public Point<float> CrossProduct(ThreeDimensionalPoint other)
+        {
+            return new ThreeDimensionalPoint(
+                (YCoordinate * other.ZCoordinate) - (ZCoordinate * other.YCoordinate),
+                (XCoordinate * other.ZCoordinate) - (ZCoordinate * other.XCoordinate),
+                (XCoordinate * other.YCoordinate) - (YCoordinate * other.XCoordinate)
+                );
         }
     }
 }

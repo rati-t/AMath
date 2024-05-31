@@ -66,5 +66,14 @@ namespace AMath.Calculus.Vectors.implementation
         {
             return new Vector(StartPoint, StartPoint + (ActualPoint * other.ActualPoint));
         }
+
+        public override BaseVector<float> CrossProduct(BaseVector<float> other)
+        {
+            if (ActualPoint is ThreeDimensionalPoint first && other.ActualPoint is ThreeDimensionalPoint second)
+            {
+                return new Vector(StartPoint, StartPoint + first.CrossProduct(second));
+            }
+            throw new ArgumentException("The vector to CrossProduct must be ThreeDimensional.");
+        }
     }
 }
