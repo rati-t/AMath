@@ -3,13 +3,13 @@ using AMath.Calculus.common.Points.Implementation;
 using System.Numerics;
 
 
-namespace AMath.Calculus.Vectors
+namespace AMath.Calculus.Vectors.implementation
 {
     public class Vector : BaseVector<float>
     {
-        public Vector(float startX, float startY, float endX, float endY) 
-        {  
-            StartPoint = new TwoDimensionalPoint(startX, startY); 
+        public Vector(float startX, float startY, float endX, float endY)
+        {
+            StartPoint = new TwoDimensionalPoint(startX, startY);
             EndPoint = new TwoDimensionalPoint(endX, endY);
             ActualPoint = EndPoint - StartPoint;
         }
@@ -42,14 +42,29 @@ namespace AMath.Calculus.Vectors
             ActualPoint = EndPoint - StartPoint;
         }
 
-        internal override BaseVector<float> Add(BaseVector<float> other)
+        public override BaseVector<float> Add(BaseVector<float> other)
         {
             return new Vector(StartPoint, StartPoint + (ActualPoint + other.ActualPoint));
         }
 
-        internal override BaseVector<float> Subtract(BaseVector<float> other)
+        public override BaseVector<float> Subtract(BaseVector<float> other)
         {
             return new Vector(StartPoint, StartPoint + (ActualPoint - other.ActualPoint));
+        }
+
+        public override BaseVector<float> ScalarMultiply(float other)
+        {
+            return new Vector(StartPoint, StartPoint + (ActualPoint * other));
+        }
+
+        public override float DotProduct(BaseVector<float> other)
+        {
+            return ActualPoint.DotProduct(other.ActualPoint);
+        }
+
+        public override BaseVector<float> Multiply(BaseVector<float> other)
+        {
+            return new Vector(StartPoint, StartPoint + (ActualPoint * other.ActualPoint));
         }
     }
 }

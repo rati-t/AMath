@@ -33,6 +33,9 @@ namespace AMath.Calculus.common.Points
 
         public abstract Point<T> Add(Point<T> other);
         public abstract Point<T> Subtract(Point<T> other);
+        public abstract Point<T> MultiplyByNumber(T other);
+        public abstract Point<T> Multiply(Point<T> other);
+        public abstract T DotProduct(Point<T> other);
 
         public static Point<T> operator +(Point<T> first, Point<T> second)
         {
@@ -52,6 +55,16 @@ namespace AMath.Calculus.common.Points
         {
             return !first.Equals(second);
         }
+        public static Point<T> operator *(Point<T> first, T second)
+        {
+            return first.MultiplyByNumber(second);
+        }
+
+        public static Point<T> operator *(Point<T> first, Point<T> second)
+        {
+            return first.Multiply(second);
+        }
+
 
     }
 }

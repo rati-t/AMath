@@ -49,5 +49,28 @@ namespace AMath.Calculus.common.Points.Implementation
             }
             return false;
         }
+
+        public override Point<float> MultiplyByNumber(float other)
+        {
+            return new ThreeDimensionalPoint(XCoordinate * other, YCoordinate * other, ZCoordinate * other);
+        }
+
+        public override float DotProduct(Point<float> other)
+        {
+            if (other is ThreeDimensionalPoint other3D)
+            {
+                return (XCoordinate * other3D.XCoordinate) + (YCoordinate * other3D.YCoordinate) + (ZCoordinate * other3D.ZCoordinate);
+            }
+            throw new ArgumentException("The point to add must be of type ThreeDimensionalPoint.");
+        }
+
+        public override Point<float> Multiply(Point<float> other)
+        {
+            if (other is ThreeDimensionalPoint other3D)
+            {
+                return new ThreeDimensionalPoint(XCoordinate * other3D.XCoordinate, YCoordinate * other3D.YCoordinate, ZCoordinate * other3D.ZCoordinate);
+            }
+            throw new ArgumentException("The point to add must be of type ThreeDimensionalPoint.");
+        }
     }
 }

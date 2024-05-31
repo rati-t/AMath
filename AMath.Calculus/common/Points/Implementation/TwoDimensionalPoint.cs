@@ -31,5 +31,20 @@ namespace AMath.Calculus.common.Points.Implementation
             }
             return false;
         }
+
+        public override Point<float> MultiplyByNumber(float other)
+        {
+            return new TwoDimensionalPoint(XCoordinate * other, YCoordinate * other);
+        }
+
+        public override float DotProduct(Point<float> other)
+        {
+            return (XCoordinate * other.XCoordinate) + (YCoordinate * other.YCoordinate);
+        }
+
+        public override Point<float> Multiply(Point<float> other)
+        {
+            return new TwoDimensionalPoint(XCoordinate * other.XCoordinate, YCoordinate * other.YCoordinate);
+        }
     }
 }
