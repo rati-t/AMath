@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMath.Statistics", "AMath.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMath.Calculus", "AMath.Calculus\AMath.Calculus.csproj", "{8B070539-08B7-4220-B44D-54CEB0EFF221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMath.Calculus.Tests", "AMath.Calculus.Tests\AMath.Calculus.Tests.csproj", "{714C6130-0EA9-408F-9740-C3DD67C31BE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMath.Calculus.Tests", "AMath.Calculus.Tests\AMath.Calculus.Tests.csproj", "{714C6130-0EA9-408F-9740-C3DD67C31BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMath.Algorithms.Tests", "AMath.Algorithms.Tests\AMath.Algorithms.Tests.csproj", "{D665B5F4-4261-4785-9FA1-94DC349D0DCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AMath.Algorithms.Tests", "AMath.Algorithms.Tests\AMath.Algorithms.Tests.csproj", "{D665B5F4-4261-4785-9FA1-94DC349D0DCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMath.Statistics.Tests", "AMath.Statistics.Tests\AMath.Statistics.Tests.csproj", "{A31B211B-C9F3-4035-AAE3-8D17BB3ECF15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{D665B5F4-4261-4785-9FA1-94DC349D0DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D665B5F4-4261-4785-9FA1-94DC349D0DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D665B5F4-4261-4785-9FA1-94DC349D0DCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31B211B-C9F3-4035-AAE3-8D17BB3ECF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31B211B-C9F3-4035-AAE3-8D17BB3ECF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31B211B-C9F3-4035-AAE3-8D17BB3ECF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31B211B-C9F3-4035-AAE3-8D17BB3ECF15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
