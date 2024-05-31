@@ -12,8 +12,8 @@ namespace AMath.Calculus.Vectors
 
         public Vector(float startX, float startY, float endX, float endY) 
         {  
-            StartPoint = new TwoDimensionalPoint<float>(startX, startY); 
-            EndPoint = new TwoDimensionalPoint<float>(endX, endY);
+            StartPoint = new TwoDimensionalPoint(startX, startY); 
+            EndPoint = new TwoDimensionalPoint(endX, endY);
             ActualPoint = StartPoint - EndPoint;
         }
 
@@ -26,8 +26,8 @@ namespace AMath.Calculus.Vectors
 
         public Vector(float xCoordinate, float yCoordinate)
         {
-            StartPoint = new TwoDimensionalPoint<float>(0, 0);
-            EndPoint = new TwoDimensionalPoint<float>(xCoordinate, yCoordinate);
+            StartPoint = new TwoDimensionalPoint(0, 0);
+            EndPoint = new TwoDimensionalPoint(xCoordinate, yCoordinate);
             ActualPoint = StartPoint - EndPoint;
         }
 

@@ -9,8 +9,8 @@ namespace AMath.Calculus.common.Points
 {
     internal abstract class Point<T> where T : struct, IEquatable<T>
     {     
-        protected T XCoordinate { get; set; }
-        protected T YCoordinate { get; set; }
+        internal T XCoordinate { get; set; }
+        internal T YCoordinate { get; set; }
 
         public Point(T xCoordinate, T yCoordinate)
         {
@@ -20,7 +20,7 @@ namespace AMath.Calculus.common.Points
 
         public override bool Equals(object? obj)
         {
-            if (obj != null && obj is TwoDimensionalPoint<T> other)
+            if (obj != null && obj is TwoDimensionalPoint other)
             {
                 return XCoordinate.Equals(other.XCoordinate) && YCoordinate.Equals(other.YCoordinate);
             }

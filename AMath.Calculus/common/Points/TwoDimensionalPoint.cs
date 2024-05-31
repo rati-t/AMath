@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.common.Points
 {
-    internal class TwoDimensionalPoint<T> : Point<T> where T : struct, IEquatable<T>
+    internal class TwoDimensionalPoint : Point<float>
     {
-        public TwoDimensionalPoint(T xCoordinate, T yCoordinate) : base(xCoordinate, yCoordinate)
+        public TwoDimensionalPoint(float xCoordinate, float yCoordinate) : base(xCoordinate, yCoordinate)
         { 
         }
 
-        public override Point<T> Add(Point<T> other)
+        public override Point<float> Add(Point<float> other)
         {
-            return new TwoDimensionalPoint<float>(XCoordinate + other.XCoordinate);
+            return new TwoDimensionalPoint(XCoordinate + other.XCoordinate, YCoordinate + other.YCoordinate);
         }
 
-        public override Point<T> Subtract(Point<T> other)
+        public override Point<float> Subtract(Point<float> other)
         {
             throw new NotImplementedException();
         }
