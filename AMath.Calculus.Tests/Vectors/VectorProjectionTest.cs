@@ -18,14 +18,14 @@ namespace AMath.Calculus.Tests.Vectors
         [SetUp]
         public void Setup()
         {
-            FirstVector2DWithOrigin = new Vector(1, 1, 4, 5);
-            SecondVector2DWithOrigin = new Vector(2, 2, 3, 4);
+            FirstVector2DWithOrigin = new Vector(1, 1, 5, 5);
+            SecondVector2DWithOrigin = new Vector(2, 2, 4, 4);
             FirstVector2D = new Vector(3, 4);
             SecondVector2D = new Vector(1, 2);
             FirstVector3DWithOrigin = new Vector(1, 2, 3, 4, 5, 6);
             SecondVector3DWithOrigin = new Vector(3, 2, 1, 6, 5, 4);
-            FirstVector3D = new Vector(4, 2, 5);
-            SecondVector3D = new Vector(7, 3, 1);
+            FirstVector3D = new Vector(1, 2, 3);
+            SecondVector3D = new Vector(3, 2, 1);
         }
 
         [Test]
@@ -40,8 +40,26 @@ namespace AMath.Calculus.Tests.Vectors
         [Test]
         public void Projection2DWithOrigin()
         {
-            var predictedResult = new Vector(1, 1, 3.2f, 5.4f);
+            var predictedResult = new Vector(1, 1, 5, 5);
             var newVector = FirstVector2DWithOrigin.Projection(SecondVector2DWithOrigin);
+
+            Assert.That(predictedResult == newVector);
+        }
+
+        [Test]
+        public void Projection3D()
+        {
+            var predictedResult = new Vector(15.0f / 7, 10.0f / 7, 5.0f / 7);
+            var newVector = FirstVector3D.Projection(SecondVector3D);
+
+            Assert.That(predictedResult == newVector);
+        }
+
+        [Test]
+        public void Projection3DWithOrigin()
+        {
+            var predictedResult = new Vector(1, 2, 3, 4, 5, 6);
+            var newVector = FirstVector3DWithOrigin.Projection(SecondVector3DWithOrigin);
 
             Assert.That(predictedResult == newVector);
         }
