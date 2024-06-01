@@ -25,7 +25,7 @@ namespace AMath.Calculus.Matrices
             Content = content;
         }
 
-        protected BaseMatrix(int rows, int columns) : this(new MatrixContent<T>(rows, columns))
+        protected BaseMatrix(int rows, int columns, T[] values) : this(new MatrixContent<T>(rows, columns, values))
         {
 
         }
@@ -142,14 +142,15 @@ namespace AMath.Calculus.Matrices
         #endregion
 
         #region Multiplication
-        public void Multiply(BaseMatrix<T> multiplier)
+        public BaseMatrix<T> Multiply(BaseMatrix<T> multiplier)
         {
             if (!IsValidForMultiplication(multiplier))
                 throw MatrixExceptionHelper.Build(new MatricesIsNotCompatibleForMultiplication());
 
-            Multiply(this, multiplier);
+            var tmpMatrix = _builder.Like(RowCount, ColumnCount, Multiply(this, multiplier));
+            return tmpMatrix;
         }
-        internal abstract void Multiply(BaseMatrix<T> multiplicand, BaseMatrix<T> multiplier);
+        internal abstract T[] Multiply(BaseMatrix<T> multiplicand, BaseMatrix<T> multiplier);
         public void Multiply(T scalar) => Multiply(this, scalar);
         internal abstract void Multiply(BaseMatrix<T> multiplicand, T multiplier);
         public void MultiplyRow(T[] values, int row)
@@ -256,7 +257,7 @@ namespace AMath.Calculus.Matrices
         }
         private bool IsValidForMultiplication(BaseMatrix<T> addend)
         {
-            if (addend.RowCount != ColumnCount)
+            if (addend.ColumnCount != RowCount)
                 return false;
 
             return true;

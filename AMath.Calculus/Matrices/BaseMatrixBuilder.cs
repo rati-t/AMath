@@ -9,6 +9,6 @@ namespace AMath.Calculus.Matrices
     public abstract class BaseMatrixBuilder<T>
         where T : struct, IEquatable<T>
     {
-        public abstract BaseMatrix<T> Like(int rows, int columns);
+        public abstract BaseMatrix<T> Like(int rows, int columns, T[] values);
     }
 }

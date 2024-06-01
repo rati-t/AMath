@@ -8,9 +8,9 @@ namespace AMath.Calculus.Matrices.Implementation
 {
     public class MatrixBuilder : BaseMatrixBuilder<float>
     {
-        public override BaseMatrix<float> Like(int rows, int columns)
+        public override BaseMatrix<float> Like(int rows, int columns, float[] values)
         {
-            return new Matrix(rows, columns);
+            return new Matrix(rows, columns, values.ToArray());
         }
     }
 }

@@ -13,7 +13,7 @@ namespace AMath.Calculus.Matrices.Implementation
             _builder = new MatrixBuilder();
         }
 
-        public Matrix(int rows, int columns) : this(new MatrixContent<float>(rows, columns))
+        public Matrix(int rows, int columns, float[] values) : this(new MatrixContent<float>(rows, columns, values))
         {
             _builder = new MatrixBuilder();
         }
@@ -98,8 +98,26 @@ namespace AMath.Calculus.Matrices.Implementation
             }
         }
 
-        internal override void Multiply(BaseMatrix<float> multiplicand, BaseMatrix<float> multiplier)
-            => multiplicand.Map(new Func<float, float, float>((x, y) => x * y), multiplier.Content.Values);
+        internal override float[] Multiply(BaseMatrix<float> multiplicand, BaseMatrix<float> multiplier)
+        {
+            List<float> result = new List<float>();
+            for (int i = 0; i < multiplicand.ColumnCount; i++)
+            {
+                var column = multiplicand.GetColumn(i).ToArray();
+                for (int j = 0; j < multiplier.RowCount; j++)
+                {
+                    var row = multiplier.GetRow(j).ToArray();
+                    var sum = 0f;
+                    for (int k = 0; k < column.Length; k++)
+                    {
+                        sum += column[k] * row[k];
+                    }
+                    result.Add(sum);
+                }
+            }
+
+            return result.ToArray();
+        }
 
         internal override void Multiply(BaseMatrix<float> multiplicand, float multiplier)
             => multiplicand.Map(new Func<float, float>(x => x * multiplier));

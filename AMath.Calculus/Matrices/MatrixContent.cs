@@ -65,7 +65,7 @@ namespace AMath.Calculus.Matrices
 
         public IEnumerable<T> GetColumn(int column)
         {
-            if (!IsRowInRange(column))
+            if (!IsColumnInRange(column))
                 throw MatrixExceptionHelper.Build(new RowOutOfRangeException());
 
             return Values.Where((a, i) => i / RowCount == column);
