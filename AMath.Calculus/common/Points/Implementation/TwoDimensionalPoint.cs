@@ -46,5 +46,20 @@ namespace AMath.Calculus.common.Points.Implementation
         {
             return new TwoDimensionalPoint(XCoordinate * other.XCoordinate, YCoordinate * other.YCoordinate);
         }
+
+        public override Point<float> DevideByNumber(float other)
+        {
+            return new TwoDimensionalPoint(XCoordinate / other, YCoordinate / other);
+        }
+
+        public override Point<float> Devide(Point<float> other)
+        {
+            return new TwoDimensionalPoint(XCoordinate / other.XCoordinate, YCoordinate / other.YCoordinate);
+        }
+
+        public override float NormilizeValue()
+        {
+            return (float)Math.Sqrt(XCoordinate * XCoordinate + YCoordinate * YCoordinate);
+        }
     }
 }

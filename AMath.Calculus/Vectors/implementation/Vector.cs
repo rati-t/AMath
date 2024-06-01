@@ -27,6 +27,12 @@ namespace AMath.Calculus.Vectors.implementation
             EndPoint = endPoint;
             ActualPoint = EndPoint - StartPoint;
         }
+        internal Vector(Point<float> endPoint)
+        {
+            StartPoint = endPoint is ThreeDimensionalPoint ? new ThreeDimensionalPoint(0, 0, 0) : new TwoDimensionalPoint(0, 0);
+            EndPoint = endPoint;
+            ActualPoint = EndPoint - StartPoint;
+        }
 
         public Vector(float xCoordinate, float yCoordinate)
         {
@@ -74,6 +80,26 @@ namespace AMath.Calculus.Vectors.implementation
                 return new Vector(StartPoint, StartPoint + first.CrossProduct(second));
             }
             throw new ArgumentException("The vector to CrossProduct must be ThreeDimensional.");
+        }
+
+        public override BaseVector<float> Divide(BaseVector<float> other)
+        {
+            return new Vector(StartPoint, StartPoint + (ActualPoint / other.ActualPoint));
+        }
+
+        public override BaseVector<float> ScalarDivide(float other)
+        {
+            return new Vector(StartPoint, StartPoint + (ActualPoint / other));
+        }
+
+        public override BaseVector<float> NormilizeVector()
+        {
+            return new Vector(ActualPoint / ActualPoint.NormilizeValue());
+        }
+
+        public override BaseVector<float> Projection(BaseVector<float> other)
+        {
+            return new Vector(StartPoint, StartPoint + (DotProduct(other) / other.DotProduct(other) * other).ActualPoint);
         }
     }
 }

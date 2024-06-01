@@ -81,5 +81,24 @@ namespace AMath.Calculus.common.Points.Implementation
                 (XCoordinate * other.YCoordinate) - (YCoordinate * other.XCoordinate)
                 );
         }
+
+        public override Point<float> DevideByNumber(float other)
+        {
+            return new ThreeDimensionalPoint(XCoordinate / other, YCoordinate / other, ZCoordinate / other);
+        }
+
+        public override Point<float> Devide(Point<float> other)
+        {
+            if (other is ThreeDimensionalPoint other3D)
+            {
+                return new ThreeDimensionalPoint(XCoordinate / other3D.XCoordinate, YCoordinate / other3D.YCoordinate, ZCoordinate / other3D.ZCoordinate);
+            }
+            throw new ArgumentException("The point to devide must be of type ThreeDimensionalPoint.");
+        }
+
+        public override float NormilizeValue()
+        {
+            return (float)Math.Sqrt(XCoordinate * XCoordinate + YCoordinate * YCoordinate + ZCoordinate * ZCoordinate);
+        }
     }
 }
