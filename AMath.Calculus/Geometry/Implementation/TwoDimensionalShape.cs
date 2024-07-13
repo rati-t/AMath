@@ -5,6 +5,7 @@ using AMath.Calculus.common.Trigonometry;
 using AMath.Calculus.Matrices;
 using AMath.Calculus.Matrices.Implementation;
 using AMath.Calculus.Vectors;
+using AMath.Calculus.Vectors.implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
