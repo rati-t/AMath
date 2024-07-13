@@ -2,7 +2,7 @@
 using System.Numerics;
 
 // Source: http://matwbn.icm.edu.pl/ksiazki/cc/cc35/cc3536.pdf
-namespace Algorithm.PathFinding
+namespace Algorithm.Algorithms
 {
     public static class Dijkstra
     {
