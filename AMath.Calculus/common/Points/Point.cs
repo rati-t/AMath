@@ -33,6 +33,12 @@ namespace AMath.Calculus.common.Points
 
         public abstract Point<T> Add(Point<T> other);
         public abstract Point<T> Subtract(Point<T> other);
+        public abstract Point<T> MultiplyByNumber(T other);
+        public abstract Point<T> Multiply(Point<T> other);
+        public abstract Point<T> DevideByNumber(T other);
+        public abstract Point<T> Devide(Point<T> other);
+        public abstract T DotProduct(Point<T> other);
+        public abstract T NormilizeValue();
         public abstract bool IsOrigin();
         public abstract T[] GetCoordinates();
 
@@ -54,6 +60,26 @@ namespace AMath.Calculus.common.Points
         {
             return !first.Equals(second);
         }
+        public static Point<T> operator *(Point<T> first, T second)
+        {
+            return first.MultiplyByNumber(second);
+        }
+
+        public static Point<T> operator *(Point<T> first, Point<T> second)
+        {
+            return first.Multiply(second);
+        }
+
+        public static Point<T> operator /(Point<T> first, T second)
+        {
+            return first.DevideByNumber(second);
+        }
+
+        public static Point<T> operator /(Point<T> first, Point<T> second)
+        {
+            return first.Devide(second);
+        }
+
 
     }
 }

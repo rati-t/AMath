@@ -1,4 +1,4 @@
-﻿using AMath.Calculus.Vectors;
+﻿using AMath.Calculus.Vectors.implementation;
 using System.Linq.Expressions;
 
 
@@ -99,5 +99,15 @@ namespace AMath.Calculus.Tests.Vectors
 
             Assert.That(predictedResult == newVector);
         }
+
+        [Test]
+        public void NotEqual()
+        {
+            var predictedResult = new Vector(1, 2, 3, 1, 2, 4);
+            var newVector = FirstVector3DWithOrigin - SecondVector3DWithOrigin;
+
+            Assert.That(predictedResult != newVector);
+        }
+
     }
 }

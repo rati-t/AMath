@@ -23,8 +23,16 @@ namespace AMath.Calculus.Vectors
         }
 
 
-        internal abstract BaseVector<T> Add(BaseVector<T> other);
-        internal abstract BaseVector<T> Subtract(BaseVector<T> other);
+        public abstract BaseVector<T> Add(BaseVector<T> other);
+        public abstract BaseVector<T> Subtract(BaseVector<T> other);
+        public abstract BaseVector<T> Divide(BaseVector<T> other);
+        public abstract BaseVector<T> ScalarMultiply(T other);
+        public abstract BaseVector<T> ScalarDivide(T other);
+        public abstract BaseVector<T> Multiply(BaseVector<T> other);
+        public abstract T DotProduct(BaseVector<T> other);
+        public abstract BaseVector<T> CrossProduct(BaseVector<T> other);
+        public abstract BaseVector<T> NormilizeVector();
+        public abstract BaseVector<T> Projection(BaseVector<T> other);
 
         public static BaseVector<T> operator +(BaseVector<T> first, BaseVector<T> second)
         {
@@ -41,8 +49,32 @@ namespace AMath.Calculus.Vectors
         }
         public static bool operator !=(BaseVector<T> first, BaseVector<T> second)
         {
-            return first.Equals(second);
+            return !first.Equals(second);
         }
+
+        public static BaseVector<T> operator *(BaseVector<T> first, T second)
+        {
+            return first.ScalarMultiply(second);
+        }
+        public static BaseVector<T> operator *(T first, BaseVector<T> second)
+        {
+            return second.ScalarMultiply(first);
+        }
+
+        public static BaseVector<T> operator *(BaseVector<T> first, BaseVector<T> second)
+        {
+            return first.Multiply(second);
+        }
+        public static BaseVector<T> operator /(BaseVector<T> first, T second)
+        {
+            return first.ScalarDivide(second);
+        }
+
+        public static BaseVector<T> operator /(BaseVector<T> first, BaseVector<T> second)
+        {
+            return first.Divide(second);
+        }
+
 
     }
 }

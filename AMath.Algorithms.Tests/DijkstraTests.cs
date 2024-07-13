@@ -1,4 +1,4 @@
-using Algorithm.PathFinding;
+using Algorithm.Algorithms;
 using AMath.Calculus.Matrices;
 using AMath.Calculus.Matrices.Implementation;
 using NUnit.Framework.Constraints;

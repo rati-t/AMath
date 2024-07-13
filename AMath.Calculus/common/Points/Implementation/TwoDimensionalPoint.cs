@@ -32,6 +32,36 @@ namespace AMath.Calculus.common.Points.Implementation
             return false;
         }
 
+        public override Point<float> MultiplyByNumber(float other)
+        {
+            return new TwoDimensionalPoint(XCoordinate * other, YCoordinate * other);
+        }
+
+        public override float DotProduct(Point<float> other)
+        {
+            return (XCoordinate * other.XCoordinate) + (YCoordinate * other.YCoordinate);
+        }
+
+        public override Point<float> Multiply(Point<float> other)
+        {
+            return new TwoDimensionalPoint(XCoordinate * other.XCoordinate, YCoordinate * other.YCoordinate);
+        }
+
+        public override Point<float> DevideByNumber(float other)
+        {
+            return new TwoDimensionalPoint(XCoordinate / other, YCoordinate / other);
+        }
+
+        public override Point<float> Devide(Point<float> other)
+        {
+            return new TwoDimensionalPoint(XCoordinate / other.XCoordinate, YCoordinate / other.YCoordinate);
+        }
+
+        public override float NormilizeValue()
+        {
+            return (float)Math.Sqrt(XCoordinate * XCoordinate + YCoordinate * YCoordinate);
+        }
+
         public override bool IsOrigin()
         {
             return XCoordinate == 0 && YCoordinate == 0;
