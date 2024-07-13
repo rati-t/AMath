@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.common.Points.Implementation
 {
-    internal class ThreeDimensionalPoint : Point<float>
+    public class ThreeDimensionalPoint : Point<float>
     {
         internal float ZCoordinate { get; set; }
         public ThreeDimensionalPoint(float xCoordinate, float yCoordinate, float zCoordinate) : base(xCoordinate, yCoordinate)
@@ -48,6 +48,16 @@ namespace AMath.Calculus.common.Points.Implementation
                 return XCoordinate.Equals(other.XCoordinate) && YCoordinate.Equals(other.YCoordinate) && ZCoordinate.Equals(other.ZCoordinate);
             }
             return false;
+        }
+
+        public override bool IsOrigin()
+        {
+            return XCoordinate == 0 && YCoordinate == 0 && ZCoordinate == 0;
+        }
+
+        public override float[] GetCoordinates()
+        {
+            return new float[3] { XCoordinate, YCoordinate, ZCoordinate };
         }
     }
 }

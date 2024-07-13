@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.common.Points.Implementation
 {
-    internal class PointBuilder : BasePointBuilder<float>
+    public class PointBuilder : BasePointBuilder<float>
     {
         public override Point<float> Create(ThreeDimensionalPoint other)
         {

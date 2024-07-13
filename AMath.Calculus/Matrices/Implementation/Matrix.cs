@@ -18,6 +18,31 @@ namespace AMath.Calculus.Matrices.Implementation
             _builder = new MatrixBuilder();
         }
 
+        public override float GetDeterminant()
+        {
+            if (Content.RowCount != Content.ColumnCount)
+                throw new Exception();
+
+            if (Content.RowCount == 1)
+                return Content[0, 0]; 
+
+            float det = 0;
+            int sign = 1;
+
+            for (int j = 0; j < Content.ColumnCount; j++)
+            {
+                var minor = this.GetMinor(0, j);
+
+                float minorDet = minor.GetDeterminant();
+
+                det += sign * Get(0, j) * minorDet;
+
+                sign = -sign;
+            }
+
+            return det;
+        }
+
         internal override void Add(BaseMatrix<float> augend, BaseMatrix<float> addend)
             => augend.Map(new Func<float, float, float>((x, y) => x + y), addend.Content.Values);
 

@@ -9,7 +9,7 @@ using AMath.Calculus.common.Points.Implementation;
 
 namespace AMath.Calculus.common.Points
 {
-    internal abstract class Point<T> where T : struct, IEquatable<T>
+    public abstract class Point<T> where T : struct, IEquatable<T>
     {     
         protected BasePointBuilder<T>? _builder;
         internal T XCoordinate { get; set; }
@@ -33,6 +33,8 @@ namespace AMath.Calculus.common.Points
 
         public abstract Point<T> Add(Point<T> other);
         public abstract Point<T> Subtract(Point<T> other);
+        public abstract bool IsOrigin();
+        public abstract T[] GetCoordinates();
 
         public static Point<T> operator +(Point<T> first, Point<T> second)
         {

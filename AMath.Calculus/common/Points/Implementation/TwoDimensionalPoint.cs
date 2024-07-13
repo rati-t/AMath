@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.common.Points.Implementation
 {
-    internal class TwoDimensionalPoint : Point<float>
+    public class TwoDimensionalPoint : Point<float>
     {
         public TwoDimensionalPoint(float xCoordinate, float yCoordinate) : base(xCoordinate, yCoordinate)
         {
@@ -30,6 +30,16 @@ namespace AMath.Calculus.common.Points.Implementation
                 return XCoordinate.Equals(other.XCoordinate) && YCoordinate.Equals(other.YCoordinate);
             }
             return false;
+        }
+
+        public override bool IsOrigin()
+        {
+            return XCoordinate == 0 && YCoordinate == 0;
+        }
+
+        public override float[] GetCoordinates()
+        {
+            return new float[2] {XCoordinate, YCoordinate};
         }
     }
 }

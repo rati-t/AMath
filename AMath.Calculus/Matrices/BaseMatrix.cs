@@ -1,4 +1,5 @@
-﻿using AMath.Calculus.Matrices.Implementation;
+﻿using AMath.Calculus.common.Points;
+using AMath.Calculus.Matrices.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -51,10 +52,30 @@ namespace AMath.Calculus.Matrices
             }
         }
 
+        public abstract T GetDeterminant();
+        public BaseMatrix<T> GetMinor(int rowToRemove, int columnToRemove)
+        {
+            T[] values = new T[(RowCount - 1) * (ColumnCount - 1)];
+
+            var idx = 0;
+            for (int i = 0; i < RowCount; i++)
+            {
+                if (i == columnToRemove)
+                    continue;
+                for (int j = 0; j < ColumnCount; j++)
+                {
+                    if(j == rowToRemove)
+                        continue;
+                    values[idx] = Get(j, i);
+                    idx++;
+                }
+            }
+
+            return _builder.Like(RowCount - 1, ColumnCount - 1, values);
+        }
         public int GetIndex(int row, int column) => Content.GetIndex(row, column);
         public int GetTransposedIndex(int row, int column) => Content.GetTransposedIndex(row, column);
         public (int, int) GetCoordinates(int index) => Content.GetCoordinates(index);
-
         public void Transpose()
         {
             var values = Content.Values.ToArray();

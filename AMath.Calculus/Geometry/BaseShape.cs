@@ -12,17 +12,18 @@ using AMath.Calculus.Vectors;
 namespace AMath.Calculus.Geometry
 {
     public abstract class BaseShape<T> where T : struct, IEquatable<T>
-    {  
+    {
         public BaseShape(BaseMatrix<T> matrix)
         {
             Matrix = matrix;
         }
         internal BaseMatrix<T> Matrix { get; set; }
         public abstract void Translate(BaseVector<T> vector);
-        public abstract void Rotate(int degree);
+        public abstract void Rotate(int degree, Point<T> rotationPoint);
         public abstract void Reflect(T m, T c);
         public abstract void GlideAndReflect(BaseVector<T> vector, T m, T c);
-        public abstract void Scale(BaseVector<T> vector);
+        public abstract void Scale(Point<T> factors, Point<T> scaleBase);
+        public abstract float GetSurfaceArea();
         public T[] GetCoordinateArray()
         {
             return Matrix.Content.Values;

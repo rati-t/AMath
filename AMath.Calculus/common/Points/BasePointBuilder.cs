@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AMath.Calculus.common.Points
 {
-    internal abstract class BasePointBuilder<T> where T : struct, IEquatable<T>
+    public abstract class BasePointBuilder<T> where T : struct, IEquatable<T>
     {
         public abstract Point<T> Create(ThreeDimensionalPoint other);
         public abstract Point<T> Create(TwoDimensionalPoint other);
