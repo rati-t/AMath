@@ -26,6 +26,7 @@ namespace AMath.Calculus.Geometry.Implementation
             var points = (List<ThreeDimensionalPoint>)this.GetPoints(this.Matrix);
             var length = points.Count();
             var matrixBuilder = new MatrixBuilder();
+            List<ThreeDimesnionalShape> tetrahedrons = new List<ThreeDimesnionalShape>();
 
             for (var i = 0; i < length; i++)
             {
@@ -41,16 +42,55 @@ namespace AMath.Calculus.Geometry.Implementation
 
                 tetrahedronPoints.ForEach(x => {
                     tetrahedronValues.AddRange(x.GetCoordinates().ToList());
-                    tetrahedronValues.Add(1);
                 });
 
-                var tetrahedronMatrix = matrixBuilder.Like(4, 4, tetrahedronValues.ToArray());
+                var tetrahedronMatrix = matrixBuilder.Like(3, 4, tetrahedronValues.ToArray());
 
-                float det = tetrahedronMatrix.GetDeterminant();
-
-                totalVolume += Math.Abs(det) / 6.0f;
+                tetrahedrons.Add(new ThreeDimesnionalShape((Matrix)tetrahedronMatrix));
             }
 
+            var collisionDetector = new ShapeIntersectionChecker();
+            var collisionTestDone = false;
+            SortedSet<int> dublicatedIndices = new SortedSet<int>();
+            while (!collisionTestDone)
+            {
+                collisionTestDone = true;
+                for (var i = 0; i < tetrahedrons.Count(); i++)
+                {
+                    if (dublicatedIndices.Contains(i))
+                        continue;
+                    
+                    for (var j = 0; j < tetrahedrons.Count(); j++)
+                    {
+                        if (dublicatedIndices.Contains(j))
+                            continue;
+
+                        try
+                        {
+                            if (collisionDetector.DoCollide(tetrahedrons[i], tetrahedrons[j]))
+                            {
+                                dublicatedIndices.Add(j);
+                                collisionTestDone = false;
+                            }
+                        }catch (Exception ex)
+                        {
+                            collisionDetector.DoCollide(tetrahedrons[i], tetrahedrons[j]);
+                            var b = 1;
+                        }
+                    }
+                }
+            }
+
+            for (var i = 0; i < tetrahedrons.Count(); i++)
+            {
+                if (!dublicatedIndices.Contains(i))
+                {
+                    float det = tetrahedrons[i].Matrix.GetDeterminant();
+
+                    totalVolume += Math.Abs(det) / 6;
+                }
+            }
+            
             return totalVolume;
         }
 

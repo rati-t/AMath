@@ -1,4 +1,5 @@
 ﻿using AMath.Calculus.common.Points.Implementation;
+using AMath.Calculus.Geometry;
 using AMath.Calculus.Geometry.Implementation;
 using AMath.Calculus.Matrices.Implementation;
 using AMath.Calculus.Vectors;
@@ -120,9 +121,41 @@ namespace AMath.Calculus.Tests.Geometry
         [Test]
         public void VolumeB()
         {
-            float[] shape = new float[15] { 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0.5f, 0.5f, 0.5f };
+            float[] shape = new float[15] { 0, 0, 0,
+                1, 0, 0,
+                1, 0, 1,
+                0, 0, 1,
+                0.5f, 0.5f, 0.5f };
             ThreeDimesnionalShape shp = new ThreeDimesnionalShape(new Matrix(new Matrices.MatrixContent<float>(3, 5, shape)));
             Assert.That(shp.GetVolume() == 0.17);
+        }
+
+        [Test]
+        public void IntersectionTest()
+        {
+            var a = new ShapeIntersectionChecker();
+
+            float[] shapeA = new float[12] { 1, 0, 0, 1, 0, 1, 0, 0, 1, 0.5f, 0.5f, 0.5f };
+            ThreeDimesnionalShape shpA = new ThreeDimesnionalShape(new Matrix(new Matrices.MatrixContent<float>(3, 4, shapeA)));
+
+            float[] shapeB = new float[12] { 1, 0, 1, 0, 0, 1, 0.5f, 0.5f, 0.5f, 0, 0, 0 };
+            ThreeDimesnionalShape shpB = new ThreeDimesnionalShape(new Matrix(new Matrices.MatrixContent<float>(3, 4, shapeB)));
+
+            Assert.That(a.DoCollide(shpA, shpB) == true);
+        }
+
+        [Test]
+        public void IntersectionTestB()
+        {
+            var a = new ShapeIntersectionChecker();
+
+            float[] shapeA = new float[12] { 1, 0, 0, 1, 0, 1, 0, 0, 1, 0.5f, 0.5f, 0.5f };
+            ThreeDimesnionalShape shpA = new ThreeDimesnionalShape(new Matrix(new Matrices.MatrixContent<float>(3, 4, shapeA)));
+
+            float[] shapeB = new float[12] { 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5f, 0.5f, 0.5f };
+            ThreeDimesnionalShape shpB = new ThreeDimesnionalShape(new Matrix(new Matrices.MatrixContent<float>(3, 4, shapeB)));
+
+            Assert.That(a.DoCollide(shpA, shpB) == false);
         }
 
         private bool IsEqual(float[] a, float[] b, Func<float, float> aggregate = null)

@@ -21,6 +21,25 @@ namespace AMath.Calculus.Geometry.Implementation
             
         }
 
+        public (TwoDimensionalPoint min, TwoDimensionalPoint max) GetBoundingBox()
+        {
+            var points = (List<TwoDimensionalPoint>)GetPoints(Matrix);
+
+            float minX = points[0].XCoordinate;
+            float minY = points[0].YCoordinate;
+            float maxX = points[0].XCoordinate;
+            float maxY = points[0].YCoordinate;
+
+            foreach (var point in points)
+            {
+                if (point.XCoordinate < minX) minX = point.XCoordinate;
+                if (point.YCoordinate < minY) minY = point.YCoordinate;
+                if (point.XCoordinate > maxX) maxX = point.XCoordinate;
+                if (point.YCoordinate > maxY) maxY = point.YCoordinate;
+            }
+
+            return (new TwoDimensionalPoint(minX, minY), new TwoDimensionalPoint(maxX, maxY));
+        }
         public virtual float GetPerimeter()
         {
             double result = 0;
