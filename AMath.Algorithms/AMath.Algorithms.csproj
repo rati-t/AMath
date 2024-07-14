@@ -6,8 +6,8 @@
 		<PackageId>AMath.Algorithms</PackageId>
 		<Title>AMath library for algorithms </Title>
 		<Version>1.0.0</Version>
-		<Authors>ZukaEsakia</Authors>
-		<Company>ZukaEsakia,RatiTkhilaishvili</Company>
+		<Authors>ZukaEsakia,RatiTkhilaishvili</Authors>
+		<Company>AMath</Company>
 		<Product>AMath.Algorithms</Product>
 		<Description>AMath.Algorithms is a library from AMath (Advanced Math) library groups.
 It includes the fastest and most popular algorithms to find shortest route and etc.</Description>
