@@ -101,5 +101,10 @@ namespace AMath.Calculus.Vectors.implementation
         {
             return new Vector(StartPoint, StartPoint + (DotProduct(other) / other.DotProduct(other) * other).ActualPoint);
         }
+
+        public override string ToString()
+        {
+            return $"Vector(StartPoint: {StartPoint}, EndPoint: {EndPoint}, ActualPoint: {ActualPoint})";
+        }
     }
 }

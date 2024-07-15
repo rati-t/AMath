@@ -71,5 +71,10 @@ namespace AMath.Calculus.common.Points.Implementation
         {
             return new float[2] {XCoordinate, YCoordinate};
         }
+
+        public override string ToString()
+        {
+            return $"Vector(X: {XCoordinate}, Y: {YCoordinate})";
+        }
     }
 }
