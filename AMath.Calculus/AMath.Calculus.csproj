@@ -15,6 +15,7 @@ It includes most common functions and solutions for calculus.</Description>
 		<PackageTags>AMath, Math, Advanced Math, Calculus, Vectors, Matrices</PackageTags>
 		<PackageReleaseNotes>First release</PackageReleaseNotes>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<Version>1.0.1</Version>
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Include="..\License.txt">
