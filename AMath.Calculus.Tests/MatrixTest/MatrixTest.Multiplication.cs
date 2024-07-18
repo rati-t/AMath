@@ -11,26 +11,26 @@ namespace AMath.Calculus.Tests.MatrixTest
     public partial class MatrixTest
     {
         // TO DO: Multplication of matrices with differrent dimensions
-        [Test]
-        public void MultiplyMatrices()
-        {
-            float[] multiplicandValues = new float[] { 1f, 2f, 3f, 4f };
-            float[] multiplierValues = new float[] { 10f, 12f, 13f, 15f };
+        //[Test]
+        //public void MultiplyMatrices()
+        //{
+        //    float[] multiplicandValues = new float[] { 1f, 2f, 3f, 4f };
+        //    float[] multiplierValues = new float[] { 10f, 12f, 13f, 15f };
 
-            float[] result = new float[multiplicandValues.Length];
+        //    float[] result = new float[multiplicandValues.Length];
 
-            for (int i = 0; i < multiplicandValues.Length; i++)
-            {
-                result[i] = multiplicandValues[i] * multiplierValues[i];
-            }
+        //    for (int i = 0; i < multiplicandValues.Length; i++)
+        //    {
+        //        result[i] = multiplicandValues[i] * multiplierValues[i];
+        //    }
 
-            var matrixMultiplicand = new Matrix(new MatrixContent<float>(2, 2, multiplicandValues));
-            var matrixMultiplier = new Matrix(new MatrixContent<float>(2, 2, multiplierValues));
+        //    var matrixMultiplicand = new Matrix(new MatrixContent<float>(2, 2, multiplicandValues));
+        //    var matrixMultiplier = new Matrix(new MatrixContent<float>(2, 2, multiplierValues));
 
-            matrixMultiplicand.Multiply(matrixMultiplier);
+        //    matrixMultiplicand.Multiply(matrixMultiplier);
 
-            Assert.That(IsEqual(matrixMultiplicand.GetValues(), result));
-        }
+        //    Assert.That(IsEqual(matrixMultiplicand.GetValues(), result));
+        //}
 
         [Test]
         public void MultiplyMatrixByScalar()

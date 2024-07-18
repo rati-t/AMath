@@ -143,6 +143,15 @@ namespace AMath.Calculus.Tests.MatrixTest
             Assert.That(det == 5083515);
         }
 
+        [Test]
+        public void DeterminantTestC()
+        {
+            float[] values = new float[] { 3, 2, -1, 4, 2, 1, 5, 7, 0, 5, 2, -6, -1, 2, 1, 0 };
+            var matrix = new MatrixBuilder().Like(4, 4, values);
+            var det = matrix.GetDeterminant();
+            Assert.That(det == -418);
+        }
+
         private bool IsEqual(float[] a, float[] b)
         {
             if (a.Length != b.Length)
