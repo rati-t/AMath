@@ -110,5 +110,10 @@ namespace AMath.Calculus.common.Points.Implementation
         {
             return new float[3] { XCoordinate, YCoordinate, ZCoordinate };
         }
+
+        public override string ToString()
+        {
+            return $"Vector(X: {XCoordinate}, Y: {YCoordinate}, Z: {ZCoordinate})";
+        }
     }
 }

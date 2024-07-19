@@ -3,5 +3,28 @@
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<PackageId>AMath.Calculus</PackageId>
+		<Title>AMath library for calculus</Title>
+		<Authors>ZukaEsakia, RatiTkhilaishvili</Authors>
+		<Company>AMath</Company>
+		<Product>AMath.Calculus</Product>
+		<Description>Math.Calculus is a library from AMath (Advanced Math) library groups.
+It includes most common functions and solutions for calculus.</Description>
+		<Copyright>Copyright © 2024 AMath. All rights reserved.</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>AMath, Math, Advanced Math, Calculus, Vectors, Matrices</PackageTags>
+		<PackageReleaseNotes>First release</PackageReleaseNotes>
+		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<Version>1.0.1</Version>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Include="..\License.txt">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 </Project>
